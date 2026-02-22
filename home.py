@@ -4,6 +4,10 @@ import Background.background as background
 
 st.set_page_config(page_title="Welcome", layout="centered")
 
+#bakground
+bg = background.Background("https://preview.redd.it/bnef3fhuqm261.png?width=1080&crop=smart&auto=webp&s=c99ad19012ed7569db81a9b40732bea7828f0aae")
+bg.set_page_bg()
+
 def discription():
     st.header("Quiz discription:")
     st.write("This quiz is designed to check what personality you are, you may choose the theme of the quiz, and answer the questions, at the end you will get your personality type and a description about it.")

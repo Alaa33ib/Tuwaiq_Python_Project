@@ -180,8 +180,11 @@ if st.session_state.q_idx < len(quiz):
                 st.rerun()
 
 else:
-    # Function to show results and solve tie by choosing a character randomly
+    
     def personality(score, characters):
+    # Determine the dominant personality type based on score values.
+    # parameter: score: Numerical scores for each personality. characters: Personality labels corresponding to scores.
+    # Returns: The personality associated with the highest score. If there is a tie, one of the top-scoring personalities is selected randomly.
         max_score = max(score)
         # Check if there was a tie
         handle_tie = [i for i in range(len(score)) if score[i] == max_score]

@@ -1,13 +1,18 @@
 import streamlit as st
 import random
+import Background.background as background
 
-# --- SESSION STATE ---
+# Sets background image
+bg = background.Background("https://fun.tgv.com.my/wp-content/themes/tgv-child/assets/spongebob/sea-bg.jpg")
+bg.set_page_bg()
+
+# Session variables initialization
 if 'q_idx_spongebob' not in st.session_state:
     st.session_state.q_idx_spongebob = 0
 if 'user_scores_spongebob' not in st.session_state:
     st.session_state.user_scores_spongebob = [0] * 6
 
-# --- QUIZ DATA ---
+# Quiz  data
 # Score Order: [SpongeBob, Patrick, Squidward, Mr. Krabs, Sandy, Plankton]
 quiz = [
     {"question": "What is your dream job?", "options": [("Fry Cook at the best restaurant", [1,0,0,0,0,0]), ("Professional Napper", [0,1,0,0,0,0]), ("Famous Clarinet Player", [0,0,1,0,0,0])]},
@@ -24,7 +29,7 @@ quiz = [
 
 characters = ["SpongeBob SquarePants", "Patrick Star", "Squidward Tentacles", "Mr. Krabs", "Sandy Cheeks", "Sheldon J. Plankton"]
 
-# (Analysis and results_data dictionaries remain the same as previous response)
+# Analysis and results data and images
 analysis = [
     "You are the eternal optimist! You find joy in the smallest things and are a incredibly hard worker.",
     "You live life in the slow lane. You are a loyal friend and very relaxed.",
@@ -43,14 +48,14 @@ results_data = {
     'Sheldon J. Plankton': {'description': analysis[5], 'image': 'https://i.pinimg.com/736x/d1/9b/52/d19b52a33350849d504bcdc8964cf9c7.jpg', 'traits': ['Genius', 'Persistent', 'Misunderstood']}
 }
 
-# --- PAGE LOGIC ---
+# Page and questions logic
 if st.session_state.q_idx_spongebob < len(quiz):
     curr_q = quiz[st.session_state.q_idx_spongebob]
     st.progress((st.session_state.q_idx_spongebob + 1) / len(quiz))
     st.subheader(f"Question {st.session_state.q_idx_spongebob + 1} of 10")
     st.write(f"### {curr_q['question']}")
 
-    choice = st.radio("Choose your answer:", [opt[0] for opt in curr_q["options"]], key=f"sb_q_{st.session_state.q_idx_spongebob}")
+    choice = st.radio("", [opt[0] for opt in curr_q["options"]], key=f"sb_q_{st.session_state.q_idx_spongebob}")
 
     col1, col2 = st.columns(2)
     with col1:

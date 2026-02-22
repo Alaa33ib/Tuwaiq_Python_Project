@@ -1,7 +1,12 @@
 # Imports
 import streamlit as st
 import random
- 
+import Background.background as background
+
+# Sets background image
+bg = background.Background("https://images3.alphacoders.com/911/thumb-1920-911582.jpg")
+bg.set_page_bg()
+
 # Initialize session variables for the score and current question index
 if 'q_idx' not in st.session_state:
     st.session_state.q_idx = 0

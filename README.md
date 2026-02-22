@@ -25,7 +25,7 @@ Convert handling incorrect input to a function.
 ## Quick start
 1. Install streamlit
 ```bash
-pip install streamlit
+pip install requirement.txt
 ```
 2. Run home.py
 ```bash

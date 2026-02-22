@@ -160,13 +160,8 @@ if st.session_state.q_idx < len(quiz):
     # Navigation Buttons
     col1, col2 = st.columns([1,1])
 
-    with col1:
-        if st.session_state.q_idx > 0:
-            if st.button("Previous"):
-                st.session_state.q_idx -= 1
-                st.rerun()
 
-    with col2:
+    with col1:
         if st.button("Next"):
             # CHANGE: Finding the score for the selected radio button
             selected_index = [opt[0] for opt in curr_q["options"]].index(choice)
@@ -178,6 +173,12 @@ if st.session_state.q_idx < len(quiz):
             
             st.session_state.q_idx += 1
             st.rerun()
+
+    with col2:
+        if st.session_state.q_idx > 0:
+            if st.button("Previous"):
+                st.session_state.q_idx -= 1
+                st.rerun()
 
 else:
     # Function to show results and solve tie by choosing a character randomly

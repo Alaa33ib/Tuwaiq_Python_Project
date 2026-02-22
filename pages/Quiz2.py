@@ -58,12 +58,8 @@ if st.session_state.q_idx_spongebob < len(quiz):
     choice = st.radio("", [opt[0] for opt in curr_q["options"]], key=f"sb_q_{st.session_state.q_idx_spongebob}")
 
     col1, col2 = st.columns(2)
+    
     with col1:
-        if st.session_state.q_idx_spongebob > 0:
-            if st.button("Previous"):
-                st.session_state.q_idx_spongebob -= 1
-                st.rerun()
-    with col2:
         btn_label = "Finish Quiz" if st.session_state.q_idx_spongebob == 9 else "Next"
         if st.button(btn_label):
             selected_index = [opt[0] for opt in curr_q["options"]].index(choice)
@@ -72,6 +68,12 @@ if st.session_state.q_idx_spongebob < len(quiz):
                 st.session_state.user_scores_spongebob[i] += scores_to_add[i]
             st.session_state.q_idx_spongebob += 1
             st.rerun()
+
+    with col2:
+        if st.session_state.q_idx_spongebob > 0:
+            if st.button("Previous"):
+                st.session_state.q_idx_spongebob -= 1
+                st.rerun()
 else:
     # Results logic
     max_score = max(st.session_state.user_scores_spongebob)

@@ -14,7 +14,10 @@ if 'user_scores' not in st.session_state:
     st.session_state.user_scores = [0] * 6
 
 
-#Quiz questions
+"""
+Quiz questions:
+list of dictionary storing questions, options with its score
+"""
 quiz = [
     {
         "question": "You’re asked to teach someone a skill you’re good at. You…" ,
@@ -98,11 +101,11 @@ quiz = [
     }
 ]
 
-#Characters list and score initialization
+# Characters list and initial score
 characters = ["Conan Edogawa", "Ai Haibara", "Kogoro Mouri", "Inspector Megure", "Ran Mouri", "Professor Agasa"]
 score = [0,0,0,0,0,0]
 
-# Analysis
+# Characters analysis
 analysis = ["You’re highly analytical and enjoy unraveling complex problems on your own. Your mind constantly notices patterns and connections others often miss. Even in tense situations, you remain calm and deliberate. People turn to you when clever solutions and insight are needed.",
             "You’re highly intelligent and always thinking several steps ahead. You carefully weigh risks before making decisions. Your mysterious and composed nature makes you reliable in tense situations. You combine sharp logic with a subtle, thoughtful intuition.",
             "You thrive in the spotlight and bring energy to every situation. You act boldly and react quickly, often relying on instinct. Even when plans go off course, you adapt with flair and confidence. Your charm and enthusiasm make you unforgettable to those around you.",
@@ -146,8 +149,10 @@ results_data = {
 }
 
 
-# Questions loop
-#Looping over each question and option along with asking user to choose an option.
+"""
+Questions loop:
+Looping over each question and option along with asking user to choose an option.
+"""
 if st.session_state.q_idx < len(quiz):
     curr_q = quiz[st.session_state.q_idx]
     
@@ -184,11 +189,11 @@ else:
     # Function to show results and solve tie by choosing a character randomly
     def personality(score, characters):
         max_score = max(score)
-        # check if there was a tie
+        # Check if there was a tie
         handle_tie = [i for i in range(len(score)) if score[i] == max_score]
         random_choice = random.choice(handle_tie)
         return characters[random_choice] 
-    # Using the personality fynction to get the results
+    # Using the personality function to get the results
     result = personality(st.session_state.user_scores, characters)
 
     st.balloons()
@@ -208,7 +213,7 @@ else:
         except:
             st.warning("Image file not found!")
 
-    #Column 2: Character Describtion and traits
+    # Column 2: Character Describtion and traits
     with col2:
         st.subheader("Description")
         st.write(results_data[result]['description'])

@@ -10,7 +10,7 @@ bg.set_page_bg()
 
 def discription():
     st.header("Quiz discription:")
-    st.write("This quiz is designed to check what personality you are, you may choose the theme of the quiz, and answer the questions, at the end you will get your personality type and a description about it.")
+    st.write("This quiz is designed to check what Character matches your personality, you may choose the theme of the quiz, and answer the questions, at the end you will get your character and a description about it.")
     st.write("Please choose an option below:")
 
 if "name" not in st.session_state:
@@ -28,15 +28,17 @@ if st.session_state.name is None:
 else:
     st.write(f"Hello, {st.session_state.name} !!")
     discription()
-    col1, col2, col3 = st.columns([1,2,1])
+    col1, col2, col3 = st.columns([4,1,4])
 
-    with col2:
-        c1, c2 = st.columns(2)
 
-        with c1:
-            if st.button("Detective Conan Quiz"):
-                st.switch_page("pages/Quiz1.py")
+    with col1:
+        if st.button("Detective Conan Quiz", use_container_width=True):
+            st.switch_page("pages/Quiz1.py")
+        st.image("https://i.pinimg.com/1200x/6d/3c/e3/6d3ce33025fefbe06486b8d53b6e7ea2.jpg", use_container_width=True)
+      
 
-        with c2:
-            if st.button("SpongeBob SquarePants Quiz"):
-                st.switch_page("pages/Quiz2.py")
+    with col3:
+        if st.button("SpongeBob SquarePants Quiz", use_container_width=True):
+            st.switch_page("pages/Quiz2.py")
+        st.image("https://i.pinimg.com/736x/4b/c0/a9/4bc0a9476eb829e2f595bf6874d4187b.jpg", use_container_width=True)
+        

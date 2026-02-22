@@ -224,7 +224,8 @@ else:
     st.write("---")
     st.subheader("Your Character Breakdown")
     # Mapping scores in the chart with the character names
-    chart_data = dict(map(lambda i: (characters[i], st.session_state.user_scores[i]), range(len(characters))))    st.bar_chart(chart_data)
+    chart_data = dict(map(lambda i: (characters[i], st.session_state.user_scores[i]), range(len(characters))))
+    st.bar_chart(chart_data)
 
     if st.button("Go to Home Page"):
         st.session_state.q_idx = 0

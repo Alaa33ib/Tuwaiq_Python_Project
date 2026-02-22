@@ -1,6 +1,6 @@
 import streamlit as st
 import random
-import Background.background as background
+import styles.background as background
 
 # Sets background image
 bg = background.Background("https://fun.tgv.com.my/wp-content/themes/tgv-child/assets/spongebob/sea-bg.jpg")

@@ -1,10 +1,10 @@
 # Imports
 import streamlit as st
 import random
-import Background.background as background
+import styles.background as background
 
 # Sets background image
-bg = background.Background("https://images3.alphacoders.com/911/thumb-1920-911582.jpg")
+bg = background.Background("https://i.pinimg.com/1200x/6a/71/c2/6a71c210d3c4ebc0ceb5a0282b355524.jpg")
 bg.set_page_bg()
 
 # Initialize session variables for the score and current question index
@@ -153,7 +153,7 @@ if st.session_state.q_idx < len(quiz):
     
     st.progress((st.session_state.q_idx) / len(quiz)) # NEW: Progress bar
     st.subheader(f"Question {st.session_state.q_idx + 1} of {len(quiz)}")
-    st.write(curr_q["question"])
+    st.write(f"### {curr_q['question']}")
 
     choice = st.radio("Pick one:", [opt[0] for opt in curr_q["options"]], label_visibility="collapsed")
 

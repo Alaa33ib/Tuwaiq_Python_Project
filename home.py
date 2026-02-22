@@ -17,14 +17,16 @@ if "name" not in st.session_state:
     st.session_state.name = None
 
 if st.session_state.name is None:
-    st.write("Hello There👋")
-    name = st.text_input("Please enter your name:")
+# Change #FFD700 to any color code you like!
+    st.markdown("<span style='color: white; font-size: 32px; font-weight: bold; text-shadow: 2px 2px 5px black;'>Hello There !!</span>", unsafe_allow_html=True)    
+    st.markdown("<p style='color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px 3px black; margin-bottom: -35px;'>Please enter your name:</p>", unsafe_allow_html=True)
+    name = st.text_input("", placeholder="Your Name.", key="user_name_input")
     if st.button("Ok"):
         if name:
             st.session_state.name = name
             st.rerun() # Refresh to show the menu below
 else:
-    st.write(f"Hello, {st.session_state.name} 👋")
+    st.write(f"Hello, {st.session_state.name} !!")
     discription()
     col1, col2, col3 = st.columns([1,2,1])
 

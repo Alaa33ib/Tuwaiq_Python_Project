@@ -219,14 +219,14 @@ else:
 
     # Bar chart of score over the characters
     st.write("---")
-    st.subheader("Your Personality Breakdown")
+    st.subheader("Your Character Breakdown")
     # Mapping scores in the chart with the character names
     chart_data = {characters[i]: st.session_state.user_scores[i] for i in range(len(characters))}
     st.bar_chart(chart_data)
 
-    if st.button("Restart Quiz"):
+    if st.button("Go to Home Page"):
         st.session_state.q_idx = 0
         st.session_state.user_scores = [0] * 6
-        st.rerun()
+        st.switch_page("home.py")
 
 

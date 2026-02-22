@@ -89,11 +89,14 @@ else:
         for trait in results_data[result]['traits']:
             st.markdown(f"- **{trait}**")
 
+    # Bar chart of score over the characters
     st.write("---")
+    st.subheader("Your Character Breakdown")
+    # Mapping scores in the chart with the character names
     chart_data = {characters[i]: st.session_state.user_scores_spongebob[i] for i in range(len(characters))}
     st.bar_chart(chart_data)
 
-    if st.button("Restart Quiz"):
+    if st.button("Go to Home Page"):
         st.session_state.q_idx_spongebob = 0
         st.session_state.user_scores_spongebob = [0] * 6
-        st.rerun()
+        st.switch_page("home.py")

@@ -94,7 +94,7 @@ quiz = [
 ]
 
 #Characters list and score initialization
-characters = ["Conan Edogawa", "Ai Haibara", "Kogoro Mouri", "Inspecter Megure", "Ran Mouri", "Professor Agasa"]
+characters = ["Conan Edogawa", "Ai Haibara", "Kogoro Mouri", "Inspector Megure", "Ran Mouri", "Professor Agasa"]
 score = [0,0,0,0,0,0]
 
 # Analysis

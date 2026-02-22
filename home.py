@@ -1,6 +1,6 @@
 
 import streamlit as st
-import Background.background as background
+import styles.background as background
 
 st.set_page_config(page_title="Welcome", layout="centered")
 

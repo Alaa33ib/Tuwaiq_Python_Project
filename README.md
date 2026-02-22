@@ -21,3 +21,13 @@ Make the user choose a language (Arabic, English).
 Add multiple quizzes.
 
 Convert handling incorrect input to a function.
+
+## Quick start
+1. Install streamlit
+```bash
+pip install streamlit
+```
+2. Run home.py
+```bash
+streamlit run home.py
+```

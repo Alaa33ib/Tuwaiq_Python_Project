@@ -32,5 +32,5 @@ else:
                 st.switch_page("pages/Quiz1.py")
 
         with c2:
-            if st.button("Page 2"):
-                st.switch_page("pages/page2.py")
+            if st.button("SpongeBob SquarePants Quiz"):
+                st.switch_page("pages/Quiz2.py")

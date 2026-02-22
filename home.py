@@ -29,7 +29,7 @@ else:
 
         with c1:
             if st.button("Detective Conan Quiz"):
-                st.switch_page("pages/quiz.py")
+                st.switch_page("pages/Quiz1.py")
 
         with c2:
             if st.button("Page 2"):

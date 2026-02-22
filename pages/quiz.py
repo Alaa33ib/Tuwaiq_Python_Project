@@ -1,11 +1,8 @@
 # Imports
 import streamlit as st
 import random
-    
-# Name entry #switch to streamlit
-# name = input("Enter your name: ")
-# print(f"Welcome {name}! to Personality Quizes\nChoose A Quiz")
-
+ 
+# Initialize session variables for the score and current question index
 if 'q_idx' not in st.session_state:
     st.session_state.q_idx = 0
 if 'user_scores' not in st.session_state:
@@ -144,67 +141,87 @@ results_data = {
 }
 
 
-# Questions loop #turn to streamlit
+# Questions loop
 #Looping over each question and option along with asking user to choose an option.
-for q in quiz:
-  while True: # this will continue to ask the question until it is answered correctly.
-    print("\n",q["question"])
-    for index, option in enumerate(q["options"],start=1):
-      print(f"{index}. {option[0]}")
-
-    choice = input("\nChoose Option Number: ")
-
-    #Handling incorrect input
-    # use lambda for check
-    valid = lambda x: x.isdecimal() and 0 < int(choice) <= len(q["options"])
-    if valid(choice):
-      chosen_scores = q["options"][int(choice) - 1][1]
-      for i in range(len(score)): # calculate score
-        score[i] += chosen_scores[i]
-      break # if it is not there the loop will contiue to give the first question over and over again. No matter what is the input.
-    else:
-      print("Invalid option! Try again")
-
-
-# Function to show results and solve tie by choosing a character randomly
-def personality(score, characters):
-  max_score = max(score)
-  # check if there was a tie
-  handle_tie = [i for i in range(len(score)) if score[i] == max_score]
-  random_choice = random.choice(handle_tie)
-  return characters[random_choice] + "\n" + analysis[random_choice]
-
-
-# Using the personality fynction to get the results
-result = personality(score, characters)
-
-# Seperating line and title
-st.markdown("---")
-st.header(f"You are {result}!")
-
-# Layout organization, two columns
-col1, col2 = st.columns([1, 2]) # Ratio of column sizes
-
-# Column 1: Character image
-with col1:
-    try:
-        st.image(results_data[result]['image'], use_container_width=True)
-    except:
-        st.warning("Image file not found!")
-
-#Column 2: Character Describtion and traits
-with col2:
-    st.subheader("Description")
-    st.write(results_data[result]['description'])
+if st.session_state.q_idx < len(quiz):
+    curr_q = quiz[st.session_state.q_idx]
     
-    st.subheader("Key Traits")
-    # Displaying traits as a list
-    for trait in results_data[result]['traits']:
-        st.markdown(f"- **{trait}**")
+    st.progress((st.session_state.q_idx) / len(quiz)) # NEW: Progress bar
+    st.subheader(f"Question {st.session_state.q_idx + 1} of {len(quiz)}")
+    st.write(curr_q["question"])
 
-# Bar chart of score over the characters
-st.write("---")
-st.subheader("Your Personality Breakdown")
-# Mapping scores in the chart with the character names
-chart_data = {characters[i]: score[i] for i in range(len(characters))}
-st.bar_chart(chart_data)
+    choice = st.radio("Pick one:", [opt[0] for opt in curr_q["options"]], label_visibility="collapsed")
+
+    # Navigation Buttons
+    col1, col2 = st.columns([1,1])
+
+    with col1:
+        if st.session_state.q_idx > 0:
+            if st.button("Previous"):
+                st.session_state.q_idx -= 1
+                st.rerun()
+
+    with col2:
+        if st.button("Next"):
+            # CHANGE: Finding the score for the selected radio button
+            selected_index = [opt[0] for opt in curr_q["options"]].index(choice)
+            scores_to_add = curr_q["options"][selected_index][1]
+            
+            # Update the global score in session state
+            for i in range(len(st.session_state.user_scores)):
+                st.session_state.user_scores[i] += scores_to_add[i]
+            
+            st.session_state.q_idx += 1
+            st.rerun()
+
+else:
+    # Function to show results and solve tie by choosing a character randomly
+    def personality(score, characters):
+        max_score = max(score)
+        # check if there was a tie
+        handle_tie = [i for i in range(len(score)) if score[i] == max_score]
+        random_choice = random.choice(handle_tie)
+        return characters[random_choice] 
+    # Using the personality fynction to get the results
+    result = personality(st.session_state.user_scores, characters)
+
+    st.balloons()
+
+    
+    # Seperating line and title
+    st.markdown("---")
+    st.header(f"You are {result}!")
+
+    # Layout organization, two columns
+    col1, col2 = st.columns([1, 2]) # Ratio of column sizes
+
+    # Column 1: Character image
+    with col1:
+        try:
+            st.image(results_data[result]['image'], use_container_width=True)
+        except:
+            st.warning("Image file not found!")
+
+    #Column 2: Character Describtion and traits
+    with col2:
+        st.subheader("Description")
+        st.write(results_data[result]['description'])
+        
+        st.subheader("Key Traits")
+        # Displaying traits as a list
+        for trait in results_data[result]['traits']:
+            st.markdown(f"- **{trait}**")
+
+    # Bar chart of score over the characters
+    st.write("---")
+    st.subheader("Your Personality Breakdown")
+    # Mapping scores in the chart with the character names
+    chart_data = {characters[i]: st.session_state.user_scores[i] for i in range(len(characters))}
+    st.bar_chart(chart_data)
+
+    if st.button("Restart Quiz"):
+        st.session_state.q_idx = 0
+        st.session_state.user_scores = [0] * 6
+        st.rerun()
+
+

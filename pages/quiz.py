@@ -6,6 +6,11 @@ import random
 # name = input("Enter your name: ")
 # print(f"Welcome {name}! to Personality Quizes\nChoose A Quiz")
 
+if 'q_idx' not in st.session_state:
+    st.session_state.q_idx = 0
+if 'user_scores' not in st.session_state:
+    st.session_state.user_scores = [0] * 6
+
 
 #Quiz questions
 quiz = [
@@ -106,32 +111,32 @@ analysis = ["You’re highly analytical and enjoy unraveling complex problems on
 
 # Describtion of characters to display
 results_data = {
-    'Conan': {
+    'Conan Edogawa': {
         'description': analysis[0],
         'image': 'https://i.pinimg.com/736x/37/26/72/37267280bf1022cfa390e394e12b6a44.jpg',
         'traits': ['Analytical', 'Calm', 'Insightful']
     },
-    'Haibara': {
+    'Ai Haibara': {
         'description': analysis[1],
         'image': 'https://i.pinimg.com/736x/59/cb/bb/59cbbb323e36c0f3d38bea2d12825ee8.jpg',
         'traits': ['Strategic', 'Composed', 'Intuitive']
     },
-    'Mouri': {
+    'Kogoro Mouri': {
         'description': analysis[2],
         'image': 'https://i.pinimg.com/736x/61/39/6f/61396f4d7f04006fb6275da72602613f.jpg',
         'traits': ['Bold', 'Adaptable', 'Enthusiastic']
     },
-    'Megure': {
+    'Inspector Megure': {
         'description': analysis[3],
         'image': 'https://i.pinimg.com/736x/99/c7/b9/99c7b9ea502a1109e441f1830c60e0fe.jpg',
         'traits': ['Responsible', 'Dependable', 'Consistent']
     },
-    'Ran': {
+    'Ran Mouri': {
         'description': analysis[4],
         'image': 'https://i.pinimg.com/736x/75/70/c4/7570c4459c133f7c96420c070899f8b3.jpg',
         'traits': ['Loyal', 'Courageous', 'Empathetic']
     },
-    'Agasa': {
+    'Professor Agasa': {
         'description': analysis[5],
         'image': 'https://i.pinimg.com/736x/65/0b/44/650b440b7ea48787953e083c2fd70a7b.jpg',
         'traits': ['Imaginative', 'Curious', 'Inventive']

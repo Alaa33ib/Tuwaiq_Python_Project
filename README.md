@@ -2,7 +2,7 @@
 
 # Personality Quiz
 
-An online platform that displays different entertainment quizes. Visitors can browse available quizes, enter user name, start taking the quiz, navigate through questions and finally see their result.
+An online platform that displays different entertainment quizzes. Visitors can browse available quizzes, enter user name, start taking the quiz, navigate through questions and finally see their result.
 
 
 ## Reflection
@@ -18,6 +18,6 @@ Conditions. Because it let me handle user input and control the quiz flow intera
 
 Make the user choose a language (Arabic, English).
 
-Add multiple quizes.
+Add multiple quizzes.
 
-Convert handling-incorrect input to a function.
+Convert handling incorrect input to a function.

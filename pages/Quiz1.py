@@ -14,10 +14,7 @@ if 'user_scores' not in st.session_state:
     st.session_state.user_scores = [0] * 6
 
 
-"""
-Quiz questions:
-list of dictionary storing questions, options with its score
-"""
+# Quiz questions: list of dictionary storing questions, options with its score
 quiz = [
     {
         "question": "You’re asked to teach someone a skill you’re good at. You…" ,
@@ -149,10 +146,7 @@ results_data = {
 }
 
 
-"""
-Questions loop:
-Looping over each question and option along with asking user to choose an option.
-"""
+# Questions loop: Looping over each question and option along with asking user to choose an option.
 if st.session_state.q_idx < len(quiz):
     curr_q = quiz[st.session_state.q_idx]
     

@@ -17,7 +17,7 @@ if "name" not in st.session_state:
     st.session_state.name = None
 
 if st.session_state.name is None:
-# Change #FFD700 to any color code you like!
+
     st.markdown("<span style='color: white; font-size: 32px; font-weight: bold; text-shadow: 2px 2px 5px black;'>Hello There !!</span>", unsafe_allow_html=True)    
     st.markdown("<p style='color: white; font-size: 18px; font-weight: bold; text-shadow: 1px 1px 3px black; margin-bottom: -35px;'>Please enter your name:</p>", unsafe_allow_html=True)
     name = st.text_input("", placeholder="Your Name.", key="user_name_input")

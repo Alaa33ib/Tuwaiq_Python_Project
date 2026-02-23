@@ -4,6 +4,8 @@
 
 An online platform that displays different entertainment quizzes. Visitors can browse available quizzes, enter user name, start taking the quiz, navigate through questions and finally see their result.
 
+## Quiz Link
+https://character-quiz.streamlit.app/
 
 ## Reflection
 **What was the most challenging part?**

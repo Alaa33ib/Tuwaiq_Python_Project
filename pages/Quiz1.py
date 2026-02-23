@@ -150,11 +150,11 @@ results_data = {
 if st.session_state.q_idx < len(quiz):
     curr_q = quiz[st.session_state.q_idx]
     
-    st.progress((st.session_state.q_idx) / len(quiz)) # NEW: Progress bar
+    st.progress((st.session_state.q_idx) / len(quiz)) # Progress bar
     st.subheader(f"Question {st.session_state.q_idx + 1} of {len(quiz)}")
     st.write(f"### {curr_q['question']}")
 
-    choice = st.radio("Pick one:", [opt[0] for opt in curr_q["options"]], label_visibility="collapsed")
+    choice = st.radio("Pick one:", [opt[0] for opt in curr_q["options"]], index=None, label_visibility="collapsed")
 
     # Navigation Buttons
     col1, col2 = st.columns([1,1])

@@ -55,7 +55,7 @@ if st.session_state.q_idx_spongebob < len(quiz):
     st.subheader(f"Question {st.session_state.q_idx_spongebob + 1} of 10")
     st.write(f"### {curr_q['question']}")
 
-    choice = st.radio("", [opt[0] for opt in curr_q["options"]], key=f"sb_q_{st.session_state.q_idx_spongebob}")
+    choice = st.radio("", [opt[0] for opt in curr_q["options"]], index=None, key=f"sb_q_{st.session_state.q_idx_spongebob}")
 
     col1, col2 = st.columns(2)
     
